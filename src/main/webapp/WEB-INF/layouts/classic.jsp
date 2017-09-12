@@ -51,7 +51,7 @@
 							class="icon-bar"></span>
 					</button>
 					<a style="color: yellow;" class="navbar-brand"
-						href='<spring:url value="/"/>'>Feeds1 App</a>
+						href='<spring:url value="/"/>'>Feeds App</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
