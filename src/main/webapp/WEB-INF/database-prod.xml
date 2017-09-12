@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+
+	<!-- DBCP configuration --><!-- Keeping few db connections to optimize application -->
+	<!-- Postgres -->
+<!-- 	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource" -->
+<!-- 		destroy-method="close"> -->
+<!-- 		<property name="driverClassName" value="org.postgresql.Driver" /> -->
+<!-- 		<property name="url" value="${db.url}" /> -->
+<!-- 		<property name="username" value="${db.username}" /> -->
+<!-- 		<property name="password" value="${db.password}" /> -->
+<!-- 		<property name="removeAbandoned" value="true" /> -->
+<!-- 		<property name="initialSize" value="20" /> -->
+<!-- 		<property name="maxActive" value="30" /> -->
+<!-- 	</bean> -->
+	<!-- MySQL -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/orders" />
+		<property name="username" value="root" />
+		<property name="password" value="1234" />
+		<property name="removeAbandoned" value="true" />
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="30" />
+	</bean>
+
+	
+
+	<!-- EntityManager to manage cycle of life of all defined entities (while current session)-->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="pl.feedsapp.entity" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop> <!-- update tables -->
+			</props>
+		</property>
+		<property name="persistenceProvider"> <!-- Class which delivers functionality of persistence -->
+			<bean class="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
+		</property>
+	</bean>
+	
+	<!-- define application context -->
+	<context:component-scan base-package="pl.ordersapp">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+</beans>

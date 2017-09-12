@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="common" template="/WEB-INF/layouts/classic.jsp"><!-- name corresponds to view 
+			name returned by the controller -->
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+
+	<definition name="index" extends="common"> <!-- name corresponds to view name returned by the controller -->
+		<put-attribute name="title" value="Feeds App" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+		<put-attribute name="current" value="index"></put-attribute>
+	</definition>
+
+	<definition name="users" extends="common">
+		<put-attribute name="title" value="Users" />
+		<put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
+		<put-attribute name="current" value="users"></put-attribute>
+	</definition>
+	
+	<definition name="user-detail" extends="common">
+		<put-attribute name="title" value="User detail" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user-detail.jsp" />
+		<put-attribute name="current" value="user-detail"></put-attribute>
+	</definition>
+	
+	<definition name="account" extends="common">
+		<put-attribute name="title" value="User account" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user-account.jsp" />
+		<put-attribute name="current" value="user-account"></put-attribute>
+	</definition>
+	
+	<definition name="user-register" extends="common">
+		<put-attribute name="title" value="Register form" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
+		<put-attribute name="current" value="user-register"></put-attribute>
+	</definition>
+	
+	<definition name="feeds" extends="common">
+		<put-attribute name="title" value="Feeds" />
+		<put-attribute name="body" value="/WEB-INF/jsp/feeds.jsp" />
+		<put-attribute name="current" value="user-feeds"></put-attribute>
+	</definition>
+	
+	<definition name="login" extends="common">
+		<put-attribute name="title" value="Login form" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+		<put-attribute name="current" value="login"></put-attribute>
+	</definition>
+</tiles-definitions>

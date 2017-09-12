@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<!-- This will create embedded dataSource - for development-->
+	<jdbc:embedded-database type="HSQL" id="dataSource" />
+
+
+	<!-- EntityManager to manage cycle of life of all defined entities -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="pl.feedsapp.entity" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop> <!-- creates tables based on entity names -->
+			</props>
+		</property>
+		<property name="persistenceProvider"> <!-- Class which deliver functionality of persistence -->
+			<bean class="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
+		</property>
+	</bean>
+	
+	<!-- define application context -->
+	<context:component-scan base-package="pl.ordersapp">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+</beans>
