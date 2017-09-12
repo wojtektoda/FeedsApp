@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<!-- define application context -->
+	<!-- define application context to scan-->
 	<context:component-scan base-package="pl.feedsapp">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
