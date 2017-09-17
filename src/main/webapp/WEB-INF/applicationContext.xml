@@ -16,7 +16,7 @@
 	<!-- define application context to scan-->
 	<context:component-scan base-package="pl.feedsapp">
 		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+			expression="org.springframework.stereotype.Controller" /> <!-- COntroller is excluded from appContext -->
 	</context:component-scan>
 
 	<!-- Enable transactions -->
