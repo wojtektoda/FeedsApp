@@ -6,12 +6,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+	<!-- Enables Spring MVC annotation approach	 -->
 	<mvc:annotation-driven/>
 	
 	<!-- Front Controller transfer data to this package -->
 	<context:component-scan base-package="pl.feedsapp.controller"/>
 	
-	<!-- Apache Tiles definition -->
+	<!-- define Apache Tiles configuration-->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">

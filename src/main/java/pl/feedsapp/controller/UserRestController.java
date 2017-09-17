@@ -6,6 +6,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -43,10 +45,12 @@ public class UserRestController {
     }
     
     @RequestMapping("api/hello/{userId}")
-    public User users(@PathVariable int userId) {//REST Endpoint.
+    public HttpHeaders users(@PathVariable int userId, HttpRequest httprequest ) {//REST Endpoint.
+    	HttpHeaders header = httprequest.getHeaders();
     	
         User user = userService.findOne(userId);
-        return user;
+        
+        return header;
     }
 
 }
