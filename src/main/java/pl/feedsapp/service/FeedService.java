@@ -59,7 +59,7 @@ public class FeedService {
 		
 	}
 	
-	//Method to reaload UserOrders and refresh data in time period
+	//Method to reload Feeds and refresh data in defined time period
 	// Time in ms 1h=60x60x60 (ms)
 	@Scheduled(fixedDelay=3600000)
 	public void reloadUserOrders() {
@@ -74,7 +74,8 @@ public class FeedService {
 		return feedRepository.findAll();
 		
 	}
-
+	
+	// Only authenticated and currently loggedin user can delete own feeds or if has ROLE_ADMIN
 	@PreAuthorize("#feed.user.name == authentication.name or hasRole('ROLE_ADMIN')")
 	public void delete(@P ("feed") Feed feed) {
 		feedRepository.delete(feed);
